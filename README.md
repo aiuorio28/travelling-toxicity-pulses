@@ -1,5 +1,6 @@
 This is the code used to produce Fig. 19-22 in the paper:
 "Travelling pulses on three spatial scales in a Klausmeier-type vegetation-autotoxicity model" by Paul Carter, Arjen Doelman, Annalisa Iuorio, and Frits Veerman.
+The preprint version of this paper is available at https://arxiv.org/abs/2312.12277v1.
 
 The main code to run in order to produce such figures is "solve_k_pde_1D_fin(tend,K)". This solves the "Klausmeier autoxicity" PDE Eq. (1.1) using
 the right-hand side provided in the file k_pde_1D_rhs.m and the Jacobian in the file Dk_pde_1D_rhs.m.
