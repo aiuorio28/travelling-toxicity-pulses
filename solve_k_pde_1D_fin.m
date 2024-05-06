@@ -46,9 +46,9 @@ par.hx = Lx/(N-1); hx = par.hx;
 x = (1:N)'*hx;
 par.x = x;
 
-% load('data29970_i_ss_fin') % (initial data for case i with superslow plateau)
-load('data29970_i_noss_fin2') % (initial data for case i without superslow plateau)
-% load('dataiifin10000') % (initial data for case ii)
+load('data29970_i_noss_fin2') % (initial data for case (i) without superslow plateau)
+% load('data29970_i_ss_fin') % (initial data for case (i) with superslow plateau)
+% load('dataiifin10000') % (initial data for case (ii))
 % sol = endstate;
 
 sol = Expression1; % (only for case (ii))
@@ -92,15 +92,15 @@ end
 
 %% save solution
 
-save('ka_pulse_end_casei_noss_fin2_29970','sol'); (final solution for case i without superslow plateau)
-% save('ka_pulse_end_casei_ss_fin_29970','sol'); (final solution for case i with superslow plateau)
-% save('ka_pulse_end_caseii_fin_10000','sol'); (final solution for case ii)
+save('ka_pulse_end_casei_noss_fin2_29970','sol'); (final solution for case (i) without superslow plateau)
+% save('ka_pulse_end_casei_ss_fin_29970','sol'); (final solution for case (i) with superslow plateau)
+% save('ka_pulse_end_caseii_fin_10000','sol'); (final solution for case (ii))
 
 
 %% plot solution
 
 % spacetime plot
-figure(2)
+figure(1)
 s = surf(x, times, solution(N+1:2*N,:)');
 colormap(flipud(summer));
 s.EdgeColor = 'none';
@@ -108,34 +108,19 @@ xlim([0 par.Lx])
 % zlim([0 3])
 %xlabel('x'), ylabel('t'), zlabel('V')
 
-% solution profiles
-for i=1:length(times)
-    figure(1);
-    subplot(1,3,1);
-    plot(x,solution(1:N,i));
-    title(['U-profile at time t=' num2str(times(i))]);
-    subplot(1,3,2);
-    plot(x,solution(N+1:2*N,i));
-    title(['V-profile at time t=' num2str(times(i))]);
-    subplot(1,3,3);
-    plot(x,solution(2*N+1:3*N,i));
-    title(['S-profile at time t=' num2str(times(i))]);
-    pause;
-end
-
-% 3d plot in phase space
+% 3D plot in phase space
 U = solution(1:N,end);
 V = solution(N+1:2*N,end);
 S = solution(2*N+1:3*N,end);
 
-figure(3)
+figure(2) % for case (i)
 plot3(V,Dx*V,S)
 xlabel('V')
 ylabel('V_x')
 zlabel('S')
 
-figure(4)
-plot3(V,U,S)
-xlabel('V')
-ylabel('U')
-zlabel('S')
+% figure(2) % for case (ii)
+% plot3(V,U,S)
+% xlabel('V')
+% ylabel('U')
+% zlabel('S')
